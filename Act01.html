@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Bootstrap + JavaScript!</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <style>
+      .flex-container {
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: nowrap;
+      }
+      .btn-delete {
+        width: 100%;
+        border: none;
+      }
+      .btn-delete:hover {
+        opacity: 0.8;
+      }
+      .card {
+        width: 18rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div class="container">
+        <div class="row" id="card-container"></div>
+        <button class="btn btn-success" id="add-card-btn" onclick="addCard()">
+          Add Card
+        </button>
+      </div>
+
+      <template id="card-template">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <img src="./persian cat.jpg" class="card-img-top" alt="..." />
+              <h5 class="card-title">Card Title</h5>
+              <p class="card-text">Card Content</p>
+              <button
+                class="btn btn-danger btn-delete"
+                onclick="deleteCard(this)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <script>
+      function addCard() {
+        // Get the card template
+        var cardTemplate = document.getElementById("card-template");
+
+        // Create a new card element by cloning the template
+        var card = cardTemplate.content.cloneNode(true);
+
+        // Append the card to the card container
+        document.getElementById("card-container").appendChild(card);
+      }
+
+      function deleteCard(btn) {
+        // Get the parent card element
+        var card = btn.parentNode.parentNode.parentNode;
+
+        // Remove the card from the card container
+        card.remove();
+      }
+    </script>
+  </body>
+  <script>
+    const bodyElement = document.getElementById("card-group");
+    let elementStorage = `<div class="card">
+  <img src="./persian cat.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">description</p>
+    
+  </div>
+  <button id="card-delete" class="btn-delete">Delete </button>
+</div>`;
+
+    bodyElement.innerHTML += elementStorage;
+
+    function myFunction() {
+      var get = document.getElementById("card-group");
+      bodyElement.innerHTML += elementStorage;
+    }
+
+    var deleteButton = document.getElementById("btn-delete");
+    deleteButton.addEventListener("click", deleteListItem);
+  </script>
+</html>
